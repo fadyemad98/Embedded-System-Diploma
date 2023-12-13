@@ -1,0 +1,35 @@
+#include <stdio.h>
+int i,x,sum=0;
+int main()
+{
+    printf("Enter an integer: ");
+    scanf("%d",&x);
+    for (i=0; i<=x; i++)
+    {
+        sum=sum+i;
+    }
+    printf("Sum= %d",sum);
+    return 0;
+}
+
+
+
+    or
+    
+    
+    #include <stdio.h>
+int main() {
+    int x, i, sum = 0;
+    printf("Enter a positive integer: ");
+    scanf("%d", &x);
+    i = 1;
+
+    while (i <= x) {
+        sum=sum+ i;
+        ++i;
+    }
+
+    printf("Sum = %d", sum);
+    return 0;
+}
+
