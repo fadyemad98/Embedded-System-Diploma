@@ -1,2 +1,4 @@
 # Embedded-System-Diploma
-All my project 
+Fady-Emad-Shoukry
+
+All my project & assignments. 
