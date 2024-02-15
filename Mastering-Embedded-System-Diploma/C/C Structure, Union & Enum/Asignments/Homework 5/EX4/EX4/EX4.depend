@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1703956183 source:f:\embedded_system\embedded system diploma\unit 2 c programming\#6 strucure_union_enum\asignments\homework 5\ex4\ex4\main.c
+	<stdio.h>
+	<string.h>
+	<conio.h>
+
