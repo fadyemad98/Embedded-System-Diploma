@@ -1,0 +1,60 @@
+/*
+ * main.c
+ *
+ *  Created on: Feb 21, 2024
+ *      Author: fady emad
+ */
+#include "fifo.h"
+int main(){
+	printf("\t\t===================Hello========================\n\n");
+	printf("\t\t============This is a fifo example============\n\n");
+	printf("\tto continue press any key\n\n");
+	getchar();
+	FIFO_Buf_t uart;
+	unsigned int i;
+	element_type *temp;
+	if(FIFO_init(&uart,buffer1,width)==FIFO_no_error)
+		printf("======fifo init is done======\n\n");
+	printf("========FIFO ENQUEUE========\n\n");
+	for(i=0;i<width+2;i++)
+	{
+		printf("FIFO Enqueue (%d)\n",i);
+		if(FIFO_ENQUEUE(&uart,i)==FIFO_no_error)
+			printf("FIFO Enqueue (%d) ---done\n",i);
+		else if (FIFO_ENQUEUE(&uart,i)==FIFO_full)
+								{
+			printf("FIFO Enqueue (%d) ---failed\n\n",i);
+			printf("FIFO full\n\n");
+
+			break;
+								}
+	}
+	FIFO_print (&uart);
+	printf("========FIFO DEQUEUE========\n\n");
+	for(i=0;i<width-2;i++){
+		if(FIFO_DEQUEUE(&uart,temp)==FIFO_no_error)
+			printf("FIFO Dequeue (%d)-----done\n",i);
+		else if(FIFO_DEQUEUE(&uart,temp)==FIFO_empty)
+		{
+			printf("FIFO Dequeue (%d)-----failed\n\n",i);
+			printf("FIFO Empty \n\n");
+			break;
+		}
+	}
+	printf("\n\n");
+	FIFO_print (&uart);
+	for(i=0;i<width-2;i++){
+		if(FIFO_DEQUEUE(&uart,temp)==FIFO_no_error)
+			printf("FIFO Dequeue (%d)-----done\n",i);
+		else if(FIFO_DEQUEUE(&uart,temp)==FIFO_empty)
+		{
+			printf("FIFO Dequeue (%d)-----failed\n",i);
+			printf("FIFO Empty \n");
+			break;
+		}
+	}
+	printf("\n\n");
+	FIFO_print (&uart);
+	return 0;
+}
+

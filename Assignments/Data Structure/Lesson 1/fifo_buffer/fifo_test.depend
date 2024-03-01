@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1709326472 source:c:\users\fadye\desktop\fifo_test\fifo.c
+	"fifo.h"
+
+1709325602 c:\users\fadye\desktop\fifo_test\fifo.h
+	"stdio.h"
+	"stdint.h"
+	"stdlib.h"
+
+1709326846 source:c:\users\fadye\desktop\fifo_test\main.c
+	"fifo.h"
+
