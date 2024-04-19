@@ -5,19 +5,19 @@ All my project & assignments.
 # What is progress-bar.dev?
 
 ![Progress](https://progress-bar.dev/70/)
-https://progress-bar.dev/28/
+Mastering Embedded Systems Diploma [Learn-In-Depth]
 
-![Progress](https://progress-bar.dev/28/?title=progress)
-https://progress-bar.dev/28/?title=progress
+![Progress](https://progress-bar.dev/100/?title=progress)
+C Programming Language
 
-![Progress](https://progress-bar.dev/58/)
-https://progress-bar.dev/58/
+![Progress](https://progress-bar.dev/90/)
+Embedded C
 
-![Progress](https://progress-bar.dev/58/?title=completed)
-https://progress-bar.dev/58/?title=completed
+![Progress](https://progress-bar.dev/90/?title=completed)
+System Architecture
 
-![Progress](https://progress-bar.dev/91/)
-https://progress-bar.dev/91/
+![Progress](https://progress-bar.dev/95/)
+Data Structure
 
 ![Progress](https://progress-bar.dev/91/?title=done)
 https://progress-bar.dev/91/?title=done
