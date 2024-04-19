@@ -4,7 +4,7 @@ Fady-Emad-Shoukry
 All my project & assignments. 
 # What is progress-bar.dev?
 
-![Progress](https://progress-bar.dev/28/)
+![Progress](https://progress-bar.dev/70/)
 https://progress-bar.dev/28/
 
 ![Progress](https://progress-bar.dev/28/?title=progress)
