@@ -4,7 +4,7 @@ Fady-Emad-Shoukry
 All my project & assignments. 
 # What is progress-bar.dev?
 
-![Completed](https://progress-bar.dev/70/)
+![Progress](https://progress-bar.dev/70/?title=completed)
 Mastering Embedded Systems Diploma [Learn-In-Depth]
 
 ![Progress](https://progress-bar.dev/100/?title=progress)
