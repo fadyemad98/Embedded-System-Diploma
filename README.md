@@ -4,7 +4,7 @@ Fady-Emad-Shoukry
 All my project & assignments. 
 # Mastering Embedded Systems Diploma [Learn-In-Depth]
 
-![Progress](https://progress-bar.dev/70/?title=completed)
+![Progress](https://progress-bar.dev/70/?title=progress)
 Mastering Embedded Systems Diploma [Learn-In-Depth]
 
 ![Progress](https://progress-bar.dev/100/?title=completed)
