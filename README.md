@@ -7,7 +7,7 @@ All my project & assignments.
 ![Progress](https://progress-bar.dev/70/?title=completed)
 Mastering Embedded Systems Diploma [Learn-In-Depth]
 
-![Progress](https://progress-bar.dev/100/?title=progress)
+![Progress](https://progress-bar.dev/100/?title=completed)
 C Programming Language
 
 ![Progress](https://progress-bar.dev/100/?title=completed)
