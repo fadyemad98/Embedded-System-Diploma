@@ -10,21 +10,20 @@ Mastering Embedded Systems Diploma [Learn-In-Depth]
 ![Progress](https://progress-bar.dev/100/?title=progress)
 C Programming Language
 
-![Progress](https://progress-bar.dev/100/)
+![Progress](https://progress-bar.dev/100/?title=completed)
 Embedded C
 
-![Progress](https://progress-bar.dev/90/?title=completed)
+![Progress](https://progress-bar.dev/100/?title=completed)
 System Architecture
 
-![Progress](https://progress-bar.dev/100/)
+![Progress](https://progress-bar.dev/100/?title=completed)
 Data Structure
 
-![Progress](https://progress-bar.dev/91/?title=done)
-https://progress-bar.dev/91/?title=done
+![Progress](https://progress-bar.dev/100/?title=completed)
+MCU Fundamentals
 
-![Progress](https://progress-bar.dev/7/?scale=10&title=mark&suffix=X)
-https://progress-bar.dev/7/?scale=10&title=mark&suffix=X
+![Progress](https://progress-bar.dev/90/?title=completed)
+MCU Essential Peripherals
 
-![Progress](https://progress-bar.dev/420/?scale=500&title=funds&width=200&color=babaca&suffix=$)
-https://progress-bar.dev/420/?scale=500&title=funds&width=120&color=babaca&suffix=$
+
 
