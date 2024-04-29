@@ -22,7 +22,7 @@ Data Structure
 ![Progress](https://progress-bar.dev/100/?title=completed)
 MCU Fundamentals
 
-![Progress](https://progress-bar.dev/90/?title=completed)
+![Progress](https://progress-bar.dev/90/?title=progress)
 MCU Essential Peripherals
 
 
