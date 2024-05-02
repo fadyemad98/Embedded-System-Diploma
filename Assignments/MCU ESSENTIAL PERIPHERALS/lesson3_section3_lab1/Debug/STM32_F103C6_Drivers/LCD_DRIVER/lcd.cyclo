@@ -1,0 +1,10 @@
+../STM32_F103C6_Drivers/LCD_DRIVER/lcd.c:9:6:my_wait	3
+../STM32_F103C6_Drivers/LCD_DRIVER/lcd.c:16:6:LCD_init	1
+../STM32_F103C6_Drivers/LCD_DRIVER/lcd.c:100:6:LCD_GOTO_XY	7
+../STM32_F103C6_Drivers/LCD_DRIVER/lcd.c:115:6:LCD_Command	1
+../STM32_F103C6_Drivers/LCD_DRIVER/lcd.c:142:6:LCD_Clear_Screen	1
+../STM32_F103C6_Drivers/LCD_DRIVER/lcd.c:146:6:LCD_kick	1
+../STM32_F103C6_Drivers/LCD_DRIVER/lcd.c:154:6:LCD_IsBusy	1
+../STM32_F103C6_Drivers/LCD_DRIVER/lcd.c:205:6:LCD_WriteChar	1
+../STM32_F103C6_Drivers/LCD_DRIVER/lcd.c:233:6:LCD_WriteString	4
+../STM32_F103C6_Drivers/LCD_DRIVER/lcd.c:255:6:LCD_Wirte_Special_Char	1
