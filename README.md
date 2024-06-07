@@ -24,6 +24,7 @@ MCU Fundamentals
 
 ![Progress](https://progress-bar.dev/100/?title=completed)
 MCU Essential Peripherals
-
+![Progress](https://progress-bar.dev/100/?title=completed)
+MCU Interfacing
 
 
