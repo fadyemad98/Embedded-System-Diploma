@@ -26,19 +26,24 @@ void SPI_Masterinit(void){
 	
 //	set SS Pin as O/P
 	DDR_SPI |= (1<<SS);
-	
+//set SS Pin as high
+	PORTB |= (1<<SS);
+		
 //	set SCK Pin as O/P
 	DDR_SPI |= (1<<SCK);
 
-//	set SCK frequency fosc/16
-	SPCR |= (1<<SPR0);
+//	set SCK frequency fosc/4 default
+
+//	set SCK frequency fosc/16 
+//	SPCR |= (1<<SPR0);
+	
+/* Disable speed doubler */
+	SPSR &= ~(1<<SPI2X);			
 	
 //	Bit 4 – MSTR: Master/Slave Select
 //	This bit selects Master SPI mode when written to one, and Slave SPI mode when written logic zero. 
 	SPCR |= (1<<MSTR);
 	
-//	set ss as low
-	PORTB &= ~(1<<SS);
 	
 //	Bit 6 – SPE:SPI Enable
 //	When the SPE bit is written to one, the SPI is enabled. This bit must be set to enable any SPI operations.
@@ -78,11 +83,16 @@ u8 SPI_SlaveReceive(u8 cdata){
 }
 
 u8 SPI_MasterTransmit(u8 cdata){
+	//	set ss as low
+	PORTB &= ~(1<<SS);
+	
 	SPDR = cdata;
 	while (!(SPSR & (1<<SPIF ) )); //as long as flag is not set
 	//when flag is set ---> transmit complete
 	
-//	set ss as low
+//Note: SPIF flag is cleared by first reading SPSR (with SPIF set)
+
+//	set ss as high
 	PORTB |= (1<<SS);
 	
 	return SPDR;

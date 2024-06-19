@@ -2,7 +2,7 @@
  * SPI.c
  *
  * Created: 6/13/2024 11:43:23 AM
- *  Author: fadye
+ *  Author: fady emad
  */ 
 
 #include "SPI.h"
@@ -29,6 +29,8 @@ void SPI_Masterinit(void){
 	
 //	set SCK Pin as O/P
 	DDR_SPI |= (1<<SCK);
+
+//	set SCK frequency fosc/4 default
 
 //	set SCK frequency fosc/16
 //	SPCR |= (1<<SPR0);
@@ -82,7 +84,7 @@ u8 SPI_MasterTransmit(u8 cdata){
 	while (!(SPSR & (1<<SPIF ) )); //as long as flag is not set
 	//when flag is set ---> transmit complete
 	
-//	set ss as low
+//	set ss as high
 	PORTB |= (1<<SS);
 	
 	return SPDR;

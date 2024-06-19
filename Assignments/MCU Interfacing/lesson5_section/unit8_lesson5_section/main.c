@@ -6,7 +6,7 @@
  */ 
 
 
-#define F_CPU 1000000UL
+#define F_CPU 8000000UL
 #include <avr/io.h>
 #include "BIT_MATH.h"
 #include "STD_TYPES.h"
@@ -14,27 +14,30 @@
 #include "LCD.h"
 #include "util/delay.h"
 #include "avr/interrupt.h"
+#include "string.h"
 
 #define Master_mode
 
 
 
 
-u8 ch='A';
-u8 Dummy;
-u8 MasterReceive;
-
+u8 ch=0;
+u8 buffer[1];
 int main(void)
 {
 	LCD_Init();
 	SPI_Init(Master);	
-	LCD_String("Master MCU!!!");
-	LCD_xy(1,1);
+	LCD_String("Master Device");
+	LCD_String_xy(1,0,"Sending Data:");
+	_delay_ms(300);
+	
     while (1) 
     {
-		MasterReceive = SPI_MasterTransmit(ch);
+		SPI_MasterTransmit(ch);
+		sprintf(buffer, "%d", ch);
+		LCD_String_xy(1,13,buffer);
 		ch++;
-		_delay_ms(500);
+		_delay_ms(100);
 	
     }
 }
