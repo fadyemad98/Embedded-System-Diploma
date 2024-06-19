@@ -2,7 +2,7 @@
  * LCD.h
  *
  * Created: 6/2/2024 1:01:10 PM
- *  Author: fadye
+ *  Author: fady emad
  */ 
 
 
@@ -10,7 +10,7 @@
 #define LCD_H_
 
 //includes
-#define F_CPU 8000000UL
+#define F_CPU 1000000UL
 #include <avr/io.h>						/* Include AVR std. library file */
 #include <util/delay.h>					/* Include inbuilt defined Delay header file */
 

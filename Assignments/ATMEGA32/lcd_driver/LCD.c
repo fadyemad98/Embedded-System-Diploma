@@ -11,6 +11,9 @@
 unsigned char count =0;
 void LCD_Command(unsigned char cmnd)
 {
+	//if (cmnd == Go_to_2nd_line)
+		//count =16;
+
 #ifdef EIGHT_MODE
 	LCD_Data_Port= cmnd;
 	LCD_Command_Port &= ~(1<<RS);		/* RS=0 command reg. */
@@ -41,7 +44,7 @@ void LCD_Char (unsigned char char_data)	/* LCD data write function */
 {	if(count == 16){
 	LCD_xy(1,0);		
 	}else if(count == 32){
-		LCD_Clear();
+		//LCD_Clear();
 		count = 0;
 	}
 	#ifdef EIGHT_MODE
@@ -113,6 +116,8 @@ void LCD_String_xy (char row, char pos, char *str)	/* Send string to LCD with xy
 	LCD_Command((pos & 0x0F)|cursor_at_home_position);		/* Command of first row and required position<16 */
 	else if (row == 1 && pos<16)
 	LCD_Command((pos & 0x0F)|Go_to_2nd_line);		/* Command of first row and required position<16 */
+	
+	count=pos;
 	LCD_String(str);					/* Call LCD string function */
 }
 
@@ -122,6 +127,7 @@ void LCD_xy (char row, char pos)	/* Send string to LCD with xy position */
 	LCD_Command((pos & 0x0F)|cursor_at_home_position);		/* Command of first row and required position<16 */
 	else if (row == 1 && pos<16)
 	LCD_Command((pos & 0x0F)|Go_to_2nd_line);		/* Command of first row and required position<16 */
+	count=pos;
 }
 
 void LCD_Clear()
