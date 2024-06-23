@@ -1,0 +1,251 @@
+
+unit8_lesson6_section_lab2_Slave.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000114  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000168  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000168  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000198  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000090  00000000  00000000  000001d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000880  00000000  00000000  00000264  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000065f  00000000  00000000  00000ae4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000573  00000000  00000000  00001143  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  000000e8  00000000  00000000  000016b8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000003fc  00000000  00000000  000017a0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000002f6  00000000  00000000  00001b9c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000070  00000000  00000000  00001e92  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 77 00 	call	0xee	; 0xee <main>
+  64:	0c 94 88 00 	jmp	0x110	; 0x110 <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <I2C_Slave_Init>:
+	while(TWCR&(1<<TWSTO));						/* Wait until stop condition execution */
+}
+
+void I2C_Slave_Init(u8 slave_address)
+{
+	TWAR=slave_address;							/* Assign Address in TWI address register */
+  6c:	82 b9       	out	0x02, r24	; 2
+	TWCR=(1<<TWEN)|(1<<TWEA)|(1<<TWINT);		/* Enable TWI, Enable ack generation */
+  6e:	84 ec       	ldi	r24, 0xC4	; 196
+  70:	86 bf       	out	0x36, r24	; 54
+  72:	08 95       	ret
+
+00000074 <I2C_Slave_Listen>:
+u8 I2C_Slave_Listen()
+{
+	while(1)
+	{
+		u8 status;								/* Declare variable */
+		while(!(TWCR&(1<<TWINT)));				/* Wait to be addressed */
+  74:	06 b6       	in	r0, 0x36	; 54
+  76:	07 fe       	sbrs	r0, 7
+  78:	fd cf       	rjmp	.-6      	; 0x74 <I2C_Slave_Listen>
+		status=TWSR&0xF8;						/* Read TWI status register */
+  7a:	81 b1       	in	r24, 0x01	; 1
+  7c:	88 7f       	andi	r24, 0xF8	; 248
+		if(status==0x60||status==0x68)			/* Own SLA+W received &ack returned */
+  7e:	80 36       	cpi	r24, 0x60	; 96
+  80:	61 f0       	breq	.+24     	; 0x9a <I2C_Slave_Listen+0x26>
+  82:	88 36       	cpi	r24, 0x68	; 104
+  84:	61 f0       	breq	.+24     	; 0x9e <I2C_Slave_Listen+0x2a>
+		return 0;								/* Return 0 to indicate ack returned */
+		if(status==0xA8||status==0xB0)			/* Own SLA+R received &ack returned */
+  86:	88 3a       	cpi	r24, 0xA8	; 168
+  88:	61 f0       	breq	.+24     	; 0xa2 <I2C_Slave_Listen+0x2e>
+  8a:	80 3b       	cpi	r24, 0xB0	; 176
+  8c:	61 f0       	breq	.+24     	; 0xa6 <I2C_Slave_Listen+0x32>
+		return 1;								/* Return 0 to indicate ack returned */
+		if(status==0x70||status==0x78)			/* General call received &ack returned */
+  8e:	80 37       	cpi	r24, 0x70	; 112
+  90:	61 f0       	breq	.+24     	; 0xaa <I2C_Slave_Listen+0x36>
+  92:	88 37       	cpi	r24, 0x78	; 120
+  94:	79 f7       	brne	.-34     	; 0x74 <I2C_Slave_Listen>
+		return 2;								/* Return 1 to indicate ack returned */
+  96:	82 e0       	ldi	r24, 0x02	; 2
+  98:	08 95       	ret
+	{
+		u8 status;								/* Declare variable */
+		while(!(TWCR&(1<<TWINT)));				/* Wait to be addressed */
+		status=TWSR&0xF8;						/* Read TWI status register */
+		if(status==0x60||status==0x68)			/* Own SLA+W received &ack returned */
+		return 0;								/* Return 0 to indicate ack returned */
+  9a:	80 e0       	ldi	r24, 0x00	; 0
+  9c:	08 95       	ret
+  9e:	80 e0       	ldi	r24, 0x00	; 0
+  a0:	08 95       	ret
+		if(status==0xA8||status==0xB0)			/* Own SLA+R received &ack returned */
+		return 1;								/* Return 0 to indicate ack returned */
+  a2:	81 e0       	ldi	r24, 0x01	; 1
+  a4:	08 95       	ret
+  a6:	81 e0       	ldi	r24, 0x01	; 1
+  a8:	08 95       	ret
+		if(status==0x70||status==0x78)			/* General call received &ack returned */
+		return 2;								/* Return 1 to indicate ack returned */
+  aa:	82 e0       	ldi	r24, 0x02	; 2
+		else
+		continue;								/* Else continue */
+	}
+}
+  ac:	08 95       	ret
+
+000000ae <I2C_Slave_Transmit>:
+
+u8 I2C_Slave_Transmit(char data)
+{
+	uint8_t status;
+	TWDR=data;									/* Write data to TWDR to be transmitted */
+  ae:	83 b9       	out	0x03, r24	; 3
+	TWCR=(1<<TWEN)|(1<<TWINT)|(1<<TWEA);		/* Enable TWI & clear interrupt flag */
+  b0:	84 ec       	ldi	r24, 0xC4	; 196
+  b2:	86 bf       	out	0x36, r24	; 54
+	while(!(TWCR&(1<<TWINT)));					/* Wait until TWI finish its current job */
+  b4:	06 b6       	in	r0, 0x36	; 54
+  b6:	07 fe       	sbrs	r0, 7
+  b8:	fd cf       	rjmp	.-6      	; 0xb4 <I2C_Slave_Transmit+0x6>
+	status=TWSR&0xF8;							/* Read TWI status register */
+  ba:	81 b1       	in	r24, 0x01	; 1
+  bc:	88 7f       	andi	r24, 0xF8	; 248
+	if(status==0xA0)							/* Check for STOP/REPEATED START received */
+  be:	80 3a       	cpi	r24, 0xA0	; 160
+  c0:	29 f4       	brne	.+10     	; 0xcc <I2C_Slave_Transmit+0x1e>
+	{
+		TWCR|=(1<<TWINT);						/* Clear interrupt flag & return -1 */
+  c2:	86 b7       	in	r24, 0x36	; 54
+  c4:	80 68       	ori	r24, 0x80	; 128
+  c6:	86 bf       	out	0x36, r24	; 54
+		return -1;
+  c8:	8f ef       	ldi	r24, 0xFF	; 255
+  ca:	08 95       	ret
+	}		
+	if(status==0xB8)							/* Check for data transmitted &ack received */
+  cc:	88 3b       	cpi	r24, 0xB8	; 184
+  ce:	59 f0       	breq	.+22     	; 0xe6 <I2C_Slave_Transmit+0x38>
+	return 0;									/* If yes then return 0 */
+	if(status==0xC0)							/* Check for data transmitted &nack received */
+  d0:	80 3c       	cpi	r24, 0xC0	; 192
+  d2:	29 f4       	brne	.+10     	; 0xde <I2C_Slave_Transmit+0x30>
+	{
+		TWCR|=(1<<TWINT);						/* Clear interrupt flag & return -2 */
+  d4:	86 b7       	in	r24, 0x36	; 54
+  d6:	80 68       	ori	r24, 0x80	; 128
+  d8:	86 bf       	out	0x36, r24	; 54
+		return -2;
+  da:	8e ef       	ldi	r24, 0xFE	; 254
+  dc:	08 95       	ret
+	}
+	if(status==0xC8)							/* Last byte transmitted with ack received */
+  de:	88 3c       	cpi	r24, 0xC8	; 200
+  e0:	21 f4       	brne	.+8      	; 0xea <I2C_Slave_Transmit+0x3c>
+	return -3;									/* If yes then return -3 */
+  e2:	8d ef       	ldi	r24, 0xFD	; 253
+  e4:	08 95       	ret
+	{
+		TWCR|=(1<<TWINT);						/* Clear interrupt flag & return -1 */
+		return -1;
+	}		
+	if(status==0xB8)							/* Check for data transmitted &ack received */
+	return 0;									/* If yes then return 0 */
+  e6:	80 e0       	ldi	r24, 0x00	; 0
+  e8:	08 95       	ret
+		return -2;
+	}
+	if(status==0xC8)							/* Last byte transmitted with ack received */
+	return -3;									/* If yes then return -3 */
+	else										/* else return -4 */
+	return -4;
+  ea:	8c ef       	ldi	r24, 0xFC	; 252
+}
+  ec:	08 95       	ret
+
+000000ee <main>:
+#define F_CPU 8000000UL
+#include "i2c.h"
+
+int main(void){	
+	u8 status,ch=0;
+	I2C_Slave_Init(0b11010000);
+  ee:	80 ed       	ldi	r24, 0xD0	; 208
+  f0:	0e 94 36 00 	call	0x6c	; 0x6c <I2C_Slave_Init>
+	status = I2C_Slave_Listen();
+  f4:	0e 94 3a 00 	call	0x74	; 0x74 <I2C_Slave_Listen>
+#include <avr/io.h>
+#define F_CPU 8000000UL
+#include "i2c.h"
+
+int main(void){	
+	u8 status,ch=0;
+  f8:	c0 e0       	ldi	r28, 0x00	; 0
+	I2C_Slave_Init(0b11010000);
+	status = I2C_Slave_Listen();
+    while (1) 
+    {	
+		status = I2C_Slave_Listen();
+  fa:	0e 94 3a 00 	call	0x74	; 0x74 <I2C_Slave_Listen>
+
+		if (status ==1)
+  fe:	81 30       	cpi	r24, 0x01	; 1
+ 100:	e1 f7       	brne	.-8      	; 0xfa <main+0xc>
+		{
+			
+			I2C_Slave_Transmit(ch++);
+ 102:	d1 e0       	ldi	r29, 0x01	; 1
+ 104:	dc 0f       	add	r29, r28
+ 106:	8c 2f       	mov	r24, r28
+ 108:	0e 94 57 00 	call	0xae	; 0xae <I2C_Slave_Transmit>
+ 10c:	cd 2f       	mov	r28, r29
+ 10e:	f5 cf       	rjmp	.-22     	; 0xfa <main+0xc>
+
+00000110 <_exit>:
+ 110:	f8 94       	cli
+
+00000112 <__stop_program>:
+ 112:	ff cf       	rjmp	.-2      	; 0x112 <__stop_program>
