@@ -11,15 +11,12 @@
 int main(void)
 {	
 	u8 ch=0;
-	I2C_init(0x50);
     while (1) 
     {
 		_delay_ms(500);
-		I2C_Start();				//transmit start condition
-		I2C_write(0b11010000+0);    //transmit SLA + W(0)
-		while((TWSR) != 0x18);	    //SLA + W(0) hsa been transmitted
-		I2C_write(ch++);		    //transmit data
-		while((TWSR) !=0x28);       //Data has been transmitted and ACK has been recieved
+		I2C_Master_init(0x48);
+		I2C_Start(0b11010000+0);	//transmit start condition& SLA + W(0)  
+		I2C_Write(ch++);		    //transmit data
 		I2C_Stop();				    // transmit stop condition
     }
 	return 0;
