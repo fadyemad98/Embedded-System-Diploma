@@ -20,13 +20,13 @@ System Architecture
 Data Structure
 
 ![Progress](https://progress-bar.dev/100/?title=completed)
-MCU Fundamentals
+MCU Fundamentals [AVR/ARM]
 
 ![Progress](https://progress-bar.dev/100/?title=completed)
-MCU Essential Peripherals
+MCU Essential Peripherals  [AVR/ARM]
 
 ![Progress](https://progress-bar.dev/100/?title=completed)
-MCU Interfacing
+MCU Interfacing  [AVR/ARM]
 
 ![Progress](https://progress-bar.dev/50/?title=progress)
 MCU Timers & ADC
