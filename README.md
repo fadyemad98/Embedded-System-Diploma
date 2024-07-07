@@ -28,5 +28,5 @@ MCU Essential Peripherals  [AVR/ARM]
 ![Progress](https://progress-bar.dev/100/?title=completed)
 MCU Interfacing  [AVR/ARM]
 
-![Progress](https://progress-bar.dev/50/?title=progress)
+![Progress](https://progress-bar.dev/100/?title=completed)
 MCU Timers & ADC
